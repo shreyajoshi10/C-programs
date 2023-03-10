@@ -1,0 +1,24 @@
+#include <stdio.h>
+void main()
+{
+  int num, p=1, d, s=0, digit, a;
+  printf("Enter any number ");
+  scanf("%d", &num);
+  int n = num;
+  //For finding product
+  while(num>0)
+  {
+    d = num%10;
+    p = p*d;
+    num = num/10;
+  }
+  //For finding sum of digits
+  while(n>0)
+  {
+    digit = n%10;
+    s = s + digit;
+    n = n/10;
+  }
+  a = p-s;
+  printf("%d", a);
+}
