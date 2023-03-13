@@ -1,0 +1,17 @@
+#include <stdio.h>
+void main()
+{
+  int num, n, sum=0;
+  printf("Enter any number ");
+  scanf("%d", &num);
+  while(num>0)
+  {
+    n = num%10;
+    sum = sum + (n*n);
+    num = num/10;
+  }
+  if(sum==1)
+    printf("True");
+  else
+    printf("False");
+}
