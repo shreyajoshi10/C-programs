@@ -1,0 +1,26 @@
+#include <stdio.h>
+int main()
+{
+  int n, i, d=0, nn, j=0, k=0;
+  printf("Enter number of elements you want in array ");
+  scanf("%d", &n);
+  int a[n];
+  for(i=0; i<n; i++)
+  {
+    printf("Enter the element ");
+    scanf("%d", &a[i]);
+  }
+  for(i=0; i<n; i++)
+  {
+    d = d*10 + a[i];
+  }
+  nn = d+1;
+  printf("%d \n", nn);
+  while(nn!=0)
+  {
+    a[k] = nn%10;
+    nn = nn/10;
+    k++;
+    printf("%d", a[k]);
+  }
+}
