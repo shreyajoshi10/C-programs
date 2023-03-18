@@ -1,0 +1,75 @@
+#include <string.h>
+#include <stdio.h>
+void main()
+{
+  char str[50];
+  int i=0, num=0;
+  printf("Enter any string ");
+  gets(str);
+  int len = strlen(str);
+  while(str[i] != '\0')
+  {
+    if(str[i] == 'I' && (str[i+1] == 'V' || str[i+1]=='X'))
+    {
+      if(str[i+1] == 'V')
+        num = num +4;
+      else
+        num = num + 9;
+    }
+    else if(str[i] == 'X'&& (str[i+1] == 'L' || str[i+1] == 'C'))
+    {
+      if(str[i+1] == 'L')
+        num = num + 40;
+      else
+        num = num + 90;
+    }
+    else if(str[i] == 'C'&& (str[i+1] == 'D' || str[i+1] == 'M'))
+    {
+      if(str[i+1] == 'D')
+        num = num + 400;
+      else
+        num = num + 900;
+    }
+    else if(str[i] == 'I' && (str[i+1]!='V' || str[i+1] != 'X'))
+    {
+      num = num + 1;
+      printf("%d \n", num);
+    }
+    else if(str[i] == 'V' && (str[i-1] != 'I'))
+    {
+      num = num + 5;
+      printf("%d \n", num);
+    }
+    else if(str[i] == 'X' && (str[i-1] != 'V'))
+    {
+      num = num +10;
+      printf("%d \n", num);
+    }
+    else if(str[i]=='L' && str[i-1] != 'X')
+    {
+      num = num +50;
+      printf("%d \n", num);
+    }
+    else if(str[i] == 'C' && str[i-1] != 'X')
+    {
+      num = num +100;
+      printf("%d \n", num);
+    }
+    else if(str[i]=='D' && str[i-1] != 'C')
+    {
+      num = num + 500;
+      printf("%d \n", num);
+    }
+    else if(str[i] == 'M' && str[i-1] != 'C')
+    {
+      num = num + 1000;
+      printf("%d \n", num);
+    }
+    else
+    {
+      num = num+0;
+    }
+    i++;
+  }
+  printf("%d", num);
+}
