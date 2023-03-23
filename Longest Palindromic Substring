@@ -1,0 +1,34 @@
+char * longestPalindrome(char * s){
+    int len = strlen(s);
+    int start = 0, end = 0;
+    for (int i = 0; i < len; i++) 
+    {
+        int left = i, right = i + 1;
+        while (left >= 0 && right < len && s[left] == s[right]) 
+        {
+            left--;
+            right++;
+        }
+        if (right - left - 1 > end - start) 
+        {
+            start = left + 1;
+            end = right - 1;
+        }
+        left = i - 1;
+        right = i + 1;
+        while (left >= 0 && right < len && s[left] == s[right]) 
+        {
+            left--;
+            right++;
+        }
+        if (right - left - 1 > end - start) 
+        {
+            start = left + 1;
+            end = right - 1;
+        }
+    }
+    char* result = (char*) malloc((end - start + 2) * sizeof(char));
+    strncpy(result, s + start, end - start + 1);
+    result[end - start + 1] = '\0';
+    return result;
+}
