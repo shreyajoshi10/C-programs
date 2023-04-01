@@ -1,0 +1,35 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+int* numberOfLines(int* widths, int widthsSize, char * s, int* returnSize);
+
+int main() {
+    int widths[] = {10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10};
+    char s[] = "abcdefghijklmnopqrstuvwxyz";
+    int returnSize = 0;
+    int *result = numberOfLines(widths, 26, s, &returnSize);
+    printf("Number of lines: %d\n", result[0]);
+    printf("Last line width: %d\n", result[1]);
+    free(result);
+    return 0;
+}
+
+int* numberOfLines(int* widths, int widthsSize, char * s, int* returnSize){
+    int lines = 1, cur_width = 0;
+    for(int i = 0; s[i]; i++) {
+        int width = widths[s[i] - 'a'];
+        if(cur_width + width > 100) {
+            lines++;
+            cur_width = width;
+        }
+        else {
+            cur_width += width;
+        }
+    }
+    int *result = malloc(2 * sizeof(int));
+    result[0] = lines;
+    result[1] = cur_width;
+    *returnSize = 2;
+    return result;
+}
