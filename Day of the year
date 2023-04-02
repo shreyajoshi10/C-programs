@@ -1,0 +1,22 @@
+#include <stdio.h>
+
+int dayOfYear(char * date){
+    int days[] = {31,28,31,30,31,30,31,31,30,31,30,31}; // days in each month
+    int year, month, day, i, total_days = 0;
+    sscanf(date, "%d-%d-%d", &year, &month, &day); // parsing input string
+    for(i = 0; i < month - 1; i++) {
+        total_days += days[i]; // add days from previous months
+    }
+    total_days += day; // add days from current month
+    if(month > 2 && ((year % 4 == 0 && year % 100 != 0) || year % 400 == 0)) {
+        total_days++; // adjust for leap year
+    }
+    return total_days;
+}
+
+int main() {
+    char date[] = "2023-04-02";
+    int day = dayOfYear(date);
+    printf("%d\n", day); // expected output: 92
+    return 0;
+}
