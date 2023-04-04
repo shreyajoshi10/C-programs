@@ -1,0 +1,29 @@
+#include <stdio.h>
+#include <stdbool.h>
+#include <string.h>
+#include <ctype.h>
+
+bool detectCapitalUse(char *word);
+
+int main() {
+    char word[100];
+    printf("Enter a word: ");
+    scanf("%s", word);
+    if(detectCapitalUse(word)) {
+        printf("The word follows the capitalization rule.\n");
+    }
+    else {
+        printf("The word does not follow the capitalization rule.\n");
+    }
+    return 0;
+}
+
+bool detectCapitalUse(char *word) {
+    int len = strlen(word);
+    int caps = 0;
+    for(int i = 0; i < len; i++){
+        if(isupper(word[i])) caps++;
+    }
+    if(caps == len || caps == 0 || (caps == 1 && isupper(word[0]))) return true;
+    return false;
+}
