@@ -1,0 +1,33 @@
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+
+char* makeFancyString(char* s) {
+    int n = strlen(s);
+    char* result = (char*)malloc((n + 1) * sizeof(char)); // allocate memory for the result string
+    int j = 0;
+    for (int i = 0; i < n; i++) {
+        int count = 1;
+        while (s[i + 1] == s[i]) { // count the number of consecutive characters that are the same
+            count++;
+            i++;
+        }
+        if (count >= 3) { // if there are more than or equal to 3 consecutive characters, only keep 2 of them
+            count = 2;
+        }
+        for (int k = 0; k < count; k++) { // add the characters to the result string
+            result[j] = s[i];
+            j++;
+        }
+    }
+    result[j] = '\0'; // add null character to the end of the result string
+    return result;
+}
+
+int main() {
+    char s[] = "leeetcode"; // test input string
+    char* result = makeFancyString(s); // call the function
+    printf("The fancy string is: %s\n", result); // print the result
+    free(result); // free the memory allocated for the result string
+    return 0;
+}
