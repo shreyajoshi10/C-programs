@@ -1,0 +1,28 @@
+#include <stdio.h>
+#include <string.h>
+
+char * modifyString(char * s){
+    int len = strlen(s);
+    
+    // Replace ? with a character that is not the same as its adjacent characters
+    for (int i = 0; i < len; i++) {
+        if (s[i] == '?') {
+            for (char c = 'a'; c <= 'z'; c++) {
+                if ((i == 0 || s[i-1] != c) && (i == len-1 || s[i+1] != c)) {
+                    s[i] = c;
+                    break;
+                }
+            }
+        }
+    }
+    
+    return s;
+}
+
+int main() {
+    char s[] = "?zs??";
+    printf("Original string: %s\n", s);
+    modifyString(s);
+    printf("Modified string: %s\n", s);
+    return 0;
+}
