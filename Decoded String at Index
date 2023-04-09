@@ -1,0 +1,42 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <ctype.h>
+
+char * decodeAtIndex(char * S, int K){
+    long long size = 0;
+    int i;
+    for (i = 0; S[i]; i++) {
+        if (isdigit(S[i])) {
+            size *= S[i] - '0';
+        } else {
+            size++;
+        }
+    }
+
+    for (i--; i >= 0; i--) {
+        K %= size;
+        if (K == 0 && !isdigit(S[i])) {
+            char *result = malloc(sizeof(char) * 2);
+            result[0] = S[i];
+            result[1] = '\0';
+            return result;
+        }
+        if (isdigit(S[i])) {
+            size /= S[i] - '0';
+        } else {
+            size--;
+        }
+    }
+
+    return NULL;
+}
+
+int main() {
+    char *S = "leet2code3";
+    int K = 10;
+    char *result = decodeAtIndex(S, K);
+    printf("%s\n", result);
+    free(result);
+    return 0;
+}
