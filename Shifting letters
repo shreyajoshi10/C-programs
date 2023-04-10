@@ -1,0 +1,30 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+char* shiftingLetters(char* s, int* shifts, int shiftsSize) {
+    int n = strlen(s);
+    long shiftSum = 0;
+
+    // Compute cumulative sum of shifts from right to left
+    for (int i = n - 1; i >= 0; i--) {
+        shiftSum += shifts[i];
+        shiftSum %= 26;
+        s[i] = ((s[i] - 'a' + shiftSum) % 26) + 'a';
+    }
+
+    return s;
+}
+
+int main() {
+    // Example inputs
+    char s[] = "abc";
+    int shifts[] = {3, 5, 9};
+    int shiftsSize = sizeof(shifts) / sizeof(shifts[0]);
+
+    // Apply shifting and print result
+    char* shifted = shiftingLetters(s, shifts, shiftsSize);
+    printf("Shifted string: %s\n", shifted);
+
+    return 0;
+}
