@@ -1,0 +1,54 @@
+#include <stdio.h>
+#include <string.h>
+#include <ctype.h>
+
+char * shortestCompletingWord(char * licensePlate, char ** words, int wordsSize) {
+    int i, j, count[26] = {0};
+    char * result = NULL;
+    
+    // Count the frequency of each letter in the license plate
+    for (i = 0; i < strlen(licensePlate); i++) {
+        if (isalpha(licensePlate[i])) {
+            count[tolower(licensePlate[i]) - 'a']++;
+        }
+    }
+    
+    // Check each word in the words array
+    for (i = 0; i < wordsSize; i++) {
+        int temp[26] = {0};
+        int flag = 1;
+        
+        // Count the frequency of each letter in the current word
+        for (j = 0; j < strlen(words[i]); j++) {
+            temp[tolower(words[i][j]) - 'a']++;
+        }
+        
+        // Check if the current word contains all the letters in the license plate
+        for (j = 0; j < 26; j++) {
+            if (count[j] > temp[j]) {
+                flag = 0;
+                break;
+            }
+        }
+        
+        // Update the result if the current word contains all the letters in the license plate
+        if (flag) {
+            if (result == NULL || strlen(words[i]) < strlen(result)) {
+                result = words[i];
+            }
+        }
+    }
+    
+    return result;
+}
+
+int main() {
+    char * licensePlate = "1s3 PSt";
+    char * words[] = {"step", "steps", "stripe", "stepple"};
+    int wordsSize = 4;
+    
+    char * result = shortestCompletingWord(licensePlate, words, wordsSize);
+    printf("%s\n", result);
+    
+    return 0;
+}
