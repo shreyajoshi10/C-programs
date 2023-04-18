@@ -1,0 +1,30 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+char *destCity(char ***paths, int pathsSize, int *pathsColSize) {
+    char *destination = NULL;
+    int i, j;
+    int isDest;
+
+    // Iterate over each city in the paths
+    for (i = 0; i < pathsSize; i++) {
+        isDest = 1;
+        // Check if the current city is a destination city
+        for (j = 0; j < pathsSize; j++) {
+            // If the current city is the ending city of another path,
+            // it is not a destination city
+            if (i != j && strcmp(paths[i][1], paths[j][0]) == 0) {
+                isDest = 0;
+                break;
+            }
+        }
+        // If the current city is a destination city, set the destination pointer and exit loop
+        if (isDest) {
+            destination = paths[i][1];
+            break;
+        }
+    }
+    // Return the destination pointer (which may be NULL if no destination city is found)
+    return destination;
+}
