@@ -1,0 +1,16 @@
+bool areOccurrencesEqual(char * s){
+    int charCount[26] = {0}; // initialize count of each character to 0
+    int i, maxCount = 0;
+    for (i = 0; i < strlen(s); i++) {
+        charCount[s[i] - 'a']++; // increment count for each character
+        if (charCount[s[i] - 'a'] > maxCount) {
+            maxCount = charCount[s[i] - 'a']; // keep track of the highest count
+        }
+    }
+    for (i = 0; i < 26; i++) {
+        if (charCount[i] != 0 && charCount[i] != maxCount) {
+            return false; // if any character count is not equal to max count, return false
+        }
+    }
+    return true;
+}
