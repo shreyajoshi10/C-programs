@@ -1,0 +1,22 @@
+int balancedStringSplit(char *s) {
+    int count = 0, balance = 0;
+    
+    // Iterate through the string
+    for (int i = 0; s[i] != '\0'; i++) {
+        // If the character is 'L', increment the balance
+        if (s[i] == 'L') {
+            balance++;
+        }
+        // If the character is 'R', decrement the balance
+        else if (s[i] == 'R') {
+            balance--;
+        }
+        
+        // If the balance is 0, we have a balanced substring
+        if (balance == 0) {
+            count++;
+        }
+    }
+    
+    return count;
+}
