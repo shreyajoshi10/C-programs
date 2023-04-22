@@ -1,0 +1,27 @@
+#include <stdio.h>
+#include <stdbool.h>
+#include <ctype.h>
+#include <string.h>
+
+bool halvesAreAlike(char * s){
+    int n = strlen(s);
+    int vowelCount = 0;
+    for (int i = 0; i < n / 2; i++) {
+        if (strchr("aeiouAEIOU", s[i]) != NULL) {
+            vowelCount++;
+        }
+    }
+    for (int i = n / 2; i < n; i++) {
+        if (strchr("aeiouAEIOU", s[i]) != NULL) {
+            vowelCount--;
+        }
+    }
+    return vowelCount == 0;
+}
+
+int main() {
+    char* s = "AbCdEfGh";
+    bool areAlike = halvesAreAlike(s);
+    printf("%s", areAlike ? "true" : "false");
+    return 0;
+}
