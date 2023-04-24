@@ -1,0 +1,29 @@
+int canBeTypedWords(char * text, char * brokenLetters) {
+    int words = 0;
+    int broken[26] = {0}; // array to store which letters are broken
+    
+    // iterate through broken letters and mark them as broken
+    for(int i = 0; brokenLetters[i] != '\0'; i++) {
+        broken[brokenLetters[i] - 'a'] = 1;
+    }
+    
+    // iterate through the text and count the number of words that can be typed
+    int canType = 1;
+    for(int i = 0; text[i] != '\0'; i++) {
+        if(text[i] == ' ') { // end of a word
+            if(canType) { // all letters in the word can be typed
+                words++;
+            }
+            canType = 1; // reset canType for the next word
+        } else if(broken[text[i] - 'a']) { // current letter is broken
+            canType = 0;
+        }
+    }
+    
+    // check the last word in the text
+    if(canType) {
+        words++;
+    }
+    
+    return words;
+}
