@@ -1,0 +1,23 @@
+int minSteps(char * s, char * t){
+    int freq[26] = {0}; // initialize frequency array with zeros
+    int len = strlen(s);
+    int steps = 0;
+    
+    // calculate frequency of characters in string s
+    for (int i = 0; i < len; i++) {
+        freq[s[i] - 'a']++;
+    }
+    
+    // decrement frequency of characters in string t
+    // for each character in t that matches s
+    for (int i = 0; i < len; i++) {
+        if (freq[t[i] - 'a'] > 0) {
+            freq[t[i] - 'a']--;
+        }
+        else {
+            steps++; // increment steps if t has an extra character
+        }
+    }
+    
+    return steps;
+}
