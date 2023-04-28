@@ -1,0 +1,19 @@
+int numberOfMatches(int n){
+    // initialize the total number of matches to 0
+    int matches = 0;
+    // keep playing matches until only one team is left
+    while (n > 1) {
+        // if n is even, each match eliminates one team
+        if (n % 2 == 0) {
+            matches += n / 2;
+            n = n / 2;
+        }
+        // if n is odd, one team gets a bye and advances to the next round
+        else {
+            matches += (n - 1) / 2;
+            n = (n - 1) / 2 + 1;
+        }
+    }
+    // return the total number of matches
+    return matches;
+}
