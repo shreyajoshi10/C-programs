@@ -1,0 +1,14 @@
+bool canBeEqual(int* target, int targetSize, int* arr, int arrSize){
+    int freq[1001] = {0}; // array to count the frequency of each number
+    
+    // count the frequency of each number in the target array
+    for (int i = 0; i < targetSize; i++) {
+        freq[target[i]]++;
+    }
+    
+    // check if each number in the arr array has the same frequency as in target array
+    for (int i = 0; i < arrSize; i++) {
+        if (--freq[arr[i]] < 0) {
+            return false;
+        }
+    }
