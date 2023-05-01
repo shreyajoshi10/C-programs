@@ -1,0 +1,27 @@
+#include <stdio.h>
+#include <stdbool.h>
+
+char firstRecurringChar(char* str) {
+    bool chars[256] = {false}; // initialize all elements to false
+    int i = 0;
+    while(str[i] != '\0') {
+        int asciiVal = (int) str[i];
+        if(chars[asciiVal]) { // character has already appeared
+            return str[i];
+        } else {
+            chars[asciiVal] = true;
+        }
+        i++;
+    }
+    return '\0'; // no recurring characters
+}
+
+int main() {
+    char* str1 = "abcdefg";
+    char* str2 = "abbcde";
+    char* str3 = "aabbccddeeffgg";
+    printf("First recurring character in %s: %c\n", str1, firstRecurringChar(str1));
+    printf("First recurring character in %s: %c\n", str2, firstRecurringChar(str2));
+    printf("First recurring character in %s: %c\n", str3, firstRecurringChar(str3));
+    return 0;
+}
