@@ -1,0 +1,16 @@
+#include <stdio.h>
+#include <math.h>
+
+double angleClock(int hour, int minutes){
+    double hour_angle = (hour % 12) * 30.0 + ((double)minutes / 60.0) * 30.0;
+    double minute_angle = minutes * 6.0;
+    double diff_angle = fabs(hour_angle - minute_angle);
+    return fmin(diff_angle, 360.0 - diff_angle);
+}
+
+int main() {
+    int hour = 12, minutes = 30;
+    double angle = angleClock(hour, minutes);
+    printf("Angle between the hands of the clock at %02d:%02d is %.2lf degrees.\n", hour, minutes, angle);
+    return 0;
+}
